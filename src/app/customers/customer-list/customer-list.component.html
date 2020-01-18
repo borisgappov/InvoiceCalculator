@@ -1,0 +1,47 @@
+<div class="col-md-6">
+  <form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="customerSelector">Customer</label>
+      <select
+        id="customerSelector"
+        formControlName="customerId"
+        *ngIf="customers$ | async as customers"
+        class="custom-select form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.customerId.errors }"
+      >
+        <option value selected disabled>
+          Please select customer
+        </option>
+        <option
+          *ngFor="let customer of customers; trackBy: byId"
+          value="{{ customer.id }}" >
+          {{ customer.name }}
+        </option>
+      </select>
+      <div *ngIf="submitted && f.customerId.errors" class="invalid-feedback">
+        <div *ngIf="f.customerId.errors.required">Customer is required</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="startDatePicker">Start and end dates</label>
+      <input
+        type="text"
+        id="startDatePicker"
+        formControlName="dateRange"
+        placeholder="Please select start date"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.dateRange.errors }"
+        bsDaterangepicker
+        [bsConfig]="bsDatepickerConfig"
+        [minDate]="minDate"
+        [maxDate]="maxDate"
+      />
+      <div *ngIf="submitted && f.dateRange.errors" class="invalid-feedback">
+        <div *ngIf="f.dateRange.errors.required">Date range is required</div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">
+      Submit
+    </button>
+  </form>
+</div>
