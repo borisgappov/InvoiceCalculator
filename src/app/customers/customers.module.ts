@@ -3,12 +3,12 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { DefaultPluralizer } from "@ngrx/data";
 import { BsDatepickerModule } from "ngx-bootstrap/datepicker";
-import { CustomerListComponent } from "./customer-list/customer-list.component";
+import { CustomerFormComponent } from "./customer-form/customer-form.component";
 import { CustomerService } from "./customer.service";
 import { ReactiveFormsModule } from "@angular/forms";
 
 const routes: Routes = [
-  { path: "", pathMatch: "full", component: CustomerListComponent }
+  { path: "", pathMatch: "full", component: CustomerFormComponent }
 ];
 
 @NgModule({
@@ -18,8 +18,8 @@ const routes: Routes = [
     BsDatepickerModule.forRoot(),
     ReactiveFormsModule
   ],
-  exports: [RouterModule, CustomerListComponent],
-  declarations: [CustomerListComponent],
+  exports: [RouterModule, CustomerFormComponent],
+  declarations: [CustomerFormComponent],
   providers: [CustomerService, DefaultPluralizer]
 })
 export class CustomersModule {}

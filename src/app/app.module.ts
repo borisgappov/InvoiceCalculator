@@ -1,4 +1,4 @@
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -9,7 +9,10 @@ import { environment } from "../environments/environment";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { AppHttpUrlGenerator } from "./core/app-http-url-generator";
+import { HttpClientInterceptor } from "./core/http-client-interceptor";
+import { HttpRequestFilter } from "./core/http-request-filter";
 import { AppStoreModule } from "./store/app-store.module";
+import { PipesModule } from './core/pipes/pipes.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,9 +22,16 @@ import { AppStoreModule } from "./store/app-store.module";
     AppRoutingModule,
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     AppStoreModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    PipesModule
   ],
   providers: [
+    HttpRequestFilter,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpClientInterceptor,
+      multi: true
+    },
     DefaultPluralizer,
     { provide: HttpUrlGenerator, useClass: AppHttpUrlGenerator }
   ],

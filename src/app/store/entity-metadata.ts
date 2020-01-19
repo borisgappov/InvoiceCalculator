@@ -1,8 +1,9 @@
 import { EntityMetadataMap } from 'ngrx-data';
+import { Order } from '../core/model/order';
 
 const entityMetadata: EntityMetadataMap = {
   Customer: {},
-  Order: {}
+  Order: { }
 };
 
 export const entityConfig = {

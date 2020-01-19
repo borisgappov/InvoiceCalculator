@@ -1,0 +1,76 @@
+<div *ngIf="loading$ | async" class="container">
+  <div class="d-flex justify-content-center">
+    <div class="spinner-border  text-primary loader" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!(loading$ | async)" class="container">
+  <section *ngIf="orders$ | async as orders">
+    <div class="row">
+      <h4 class="text-primary">Summary</h4>
+      <dl class="row ml-2">
+        <dt class="col-sm-3">Customer</dt>
+        <dd class="col-sm-9">
+          {{ currentCustomer?.name }},
+          <a href="mailto:{{ currentCustomer?.email }}">{{
+            currentCustomer?.email
+          }}</a>
+        </dd>
+        <dt class="col-sm-3">Date Range</dt>
+        <dd class="col-sm-9">
+          {{ formData?.dateRange[0] | dateFormat }} -
+          {{ formData?.dateRange[1] | dateFormat }}, {{ totalDays }} day(s)
+        </dd>
+        <dt class="col-sm-3">Total Amount</dt>
+        <dd class="col-sm-9">{{ totalAmount | twoDigits }} EUR</dd>
+        <dt class="col-sm-3">Orders Count</dt>
+        <dd class="col-sm-9">
+          {{ orders?.length }}
+        </dd>
+      </dl>
+    </div>
+
+    <div class="row">
+      <h4 class="text-primary">Orders</h4>
+      <table class="table table-bordered orders">
+        <thead>
+          <tr>
+            <th scope="col">Recipient Name</th>
+            <th scope="col">Recipient Email</th>
+            <th scope="col">Total Price</th>
+            <th scope="col">Date</th>
+            <th scope="col">Order Items</th>
+            <th scope="col">Delivery Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of orders; trackBy: byId">
+            <td>{{ order.recipient?.name }}</td>
+            <td>{{ order.recipient?.email }}</td>
+            <td>
+              {{ order.items | totalPrice | twoDigits }}
+              {{ order.items[0]?.total_price.currency }}
+            </td>
+            <td>{{ order.created_at | dateFormat }}</td>
+            <td>
+              <ol *ngIf="order.items?.length">
+                <li *ngFor="let item of order.items">
+                  {{ item.name }}, quantity: {{ item.quantity }}, price:
+                  {{ item.total_price?.amount | twoDigits }}
+                  {{ item.total_price?.currency }}
+                </li>
+              </ol>
+            </td>
+            <td>
+              Courier: {{ order.delivery?.courier }},
+              <br />
+              Method: {{ order.delivery?.method }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>

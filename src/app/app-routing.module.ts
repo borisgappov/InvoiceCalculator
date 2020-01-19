@@ -1,23 +1,19 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { CustomerListComponent } from './customers/customer-list/customer-list.component';
-import { CustomersModule } from './customers/customers.module';
-
-// const routes: Routes = [{
-//   path: 'customers', component: CustomerListComponent
-// }];
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'customers' },
   {
-    path: 'customers',
-    loadChildren: './customers/customers.module#CustomersModule'
+    path: "",
+    loadChildren: "./customers/customers.module#CustomersModule"
+  },
+  {
+    path: "orders",
+    loadChildren: "./orders/orders.module#OrdersModule"
   }
 ];
-
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

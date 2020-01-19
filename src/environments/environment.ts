@@ -3,7 +3,14 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiUrl: "https://private-23f75-byrd1.apiary-mock.com/",
+  timeout: 3000,
+  dateFormat: "DD.MM.YYYY",
+  datePickerThemeClass: "theme-dark-blue",
+  customerFormSettings: {
+    minDate: "01.01.2015"
+  }
 };
 
 /*
