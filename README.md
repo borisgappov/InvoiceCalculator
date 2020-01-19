@@ -12,7 +12,7 @@ The application remembers its state and, when the page is reloaded, restores it 
 * Lazy loading
 * Pipes
 
-## Problrms and solutions
+## Problems and solutions
 
 Since the NgRx/Data creates links with slashes at the end by default, it’s the reason of AppHttpUrlGenerator class. In addition, NgRx/Data does not support API routing yet, which would allow substituting parameter values in the path. The methods of AppHttpUrlGenerator class is fired once and cannot be used to dynamically change url. A beautiful solution require deep diving in the NgRx/Data code, so I added the HttpClientInterceptor and HttpRequestFilter classes that manipulate url.
 
