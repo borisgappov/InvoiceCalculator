@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "byrd-frontend-developer-task": {
+    "frontend-developer-task": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/byrd-frontend-developer-task",
+            "outputPath": "dist/frontend-developer-task",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -69,18 +69,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "byrd-frontend-developer-task:build"
+            "browserTarget": "frontend-developer-task:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "byrd-frontend-developer-task:build:production"
+              "browserTarget": "frontend-developer-task:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "byrd-frontend-developer-task:build"
+            "browserTarget": "frontend-developer-task:build"
           }
         },
         "test": {
@@ -119,16 +119,19 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "byrd-frontend-developer-task:serve"
+            "devServerTarget": "frontend-developer-task:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "byrd-frontend-developer-task:serve:production"
+              "devServerTarget": "frontend-developer-task:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "byrd-frontend-developer-task"
+  "defaultProject": "frontend-developer-task",
+  "cli": {
+    "analytics": false
+  }
 }

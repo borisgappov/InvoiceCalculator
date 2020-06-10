@@ -1,14 +1,14 @@
-import { CommonModule } from "@angular/common";
-import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
-import { DefaultPluralizer } from "@ngrx/data";
-import { BsDatepickerModule } from "ngx-bootstrap/datepicker";
-import { CustomerFormComponent } from "./customer-form/customer-form.component";
-import { CustomerService } from "./customer.service";
-import { ReactiveFormsModule } from "@angular/forms";
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { DefaultPluralizer } from '@ngrx/data';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { CustomerFormComponent } from './customer-form/customer-form.component';
+import { CustomerService } from './customer.service';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
-  { path: "", pathMatch: "full", component: CustomerFormComponent }
+  { path: '', pathMatch: 'full', component: CustomerFormComponent }
 ];
 
 @NgModule({
@@ -22,4 +22,5 @@ const routes: Routes = [
   declarations: [CustomerFormComponent],
   providers: [CustomerService, DefaultPluralizer]
 })
-export class CustomersModule {}
+
+export class CustomersModule { }

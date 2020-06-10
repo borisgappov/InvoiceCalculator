@@ -1,23 +1,23 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { Router } from "@angular/router";
-import { Store } from "@ngrx/store";
-import { Observable, Subscription } from "rxjs";
-import { Customer } from "src/app/core/model/customer";
-import { environment } from "../../../environments/environment";
-import { CustomerFormData } from "../../core/model/customer-form-data";
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { Observable, Subscription } from 'rxjs';
+import { Customer } from 'src/app/core/model/customer';
+import { environment } from '../../../environments/environment';
+import { CustomerFormData } from '../../core/model/customer-form-data';
 import {
   SetCurrentCustomer,
   SetCustomerFormData
-} from "../../store/app-actions";
-import { getCustomerFormData } from "../../store/app-selectors";
-import { State } from "../../store/app-state";
-import { CustomerService } from "../customer.service";
+} from '../../store/app-actions';
+import { getCustomerFormData } from '../../store/app-selectors';
+import { State } from '../../store/app-state';
+import { CustomerService } from '../customer.service';
 
 @Component({
-  selector: "app-customer-form",
-  templateUrl: "./customer-form.component.html",
-  styleUrls: ["./customer-form.component.scss"]
+  selector: 'app-customer-form',
+  templateUrl: './customer-form.component.html',
+  styleUrls: ['./customer-form.component.scss']
 })
 export class CustomerFormComponent implements OnInit, OnDestroy {
   customers$: Observable<Customer[]>;
@@ -64,7 +64,7 @@ export class CustomerFormComponent implements OnInit, OnDestroy {
       .subscribe((formData: CustomerFormData) => {
         this.customerForm = this.formBuilder.group({
           customerId: [formData.customerId, Validators.required],
-          dateRange: [formData.dateRange, Validators.required]
+          dateRange: [[...formData.dateRange], Validators.required]
         });
       });
     this.minDate = new Date(environment.customerFormSettings.minDate);
@@ -99,7 +99,7 @@ export class CustomerFormComponent implements OnInit, OnDestroy {
         this.customers.find(x => x.id === this.customerForm.value.customerId)
       )
     );
-    this.router.navigate(["orders"]);
+    this.router.navigate(['orders']);
   }
 
   ngOnDestroy(): void {

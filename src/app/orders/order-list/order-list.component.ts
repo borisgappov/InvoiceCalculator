@@ -1,24 +1,24 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
-import { QueryParams } from "@ngrx/data";
-import { Store } from "@ngrx/store";
-import { Observable, Subscription } from "rxjs";
-import { Customer } from "../../core/model/customer";
-import { CustomerFormData } from "../../core/model/customer-form-data";
-import { Order } from "../../core/model/order";
-import { DateFormatPipe } from "../../core/pipes/date-format.pipe";
-import { SetPrevCustomerFormData } from "../../store/app-actions";
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { QueryParams } from '@ngrx/data';
+import { Store } from '@ngrx/store';
+import { Observable, Subscription } from 'rxjs';
+import { Customer } from '../../core/model/customer';
+import { CustomerFormData } from '../../core/model/customer-form-data';
+import { Order } from '../../core/model/order';
+import { DateFormatPipe } from '../../core/pipes/date-format.pipe';
+import { SetPrevCustomerFormData } from '../../store/app-actions';
 import {
   getCurrentCustomer,
   getCustomerFormData,
   getPrevCustomerFormData
-} from "../../store/app-selectors";
-import { State } from "../../store/app-state";
-import { OrderService } from "../order.service";
+} from '../../store/app-selectors';
+import { State } from '../../store/app-state';
+import { OrderService } from '../order.service';
 
 @Component({
-  selector: "app-order-list",
-  templateUrl: "./order-list.component.html",
-  styleUrls: ["./order-list.component.scss"]
+  selector: 'app-order-list',
+  templateUrl: './order-list.component.html',
+  styleUrls: ['./order-list.component.scss']
 })
 export class OrderListComponent implements OnInit, OnDestroy {
   orders$: Observable<Order[]>;

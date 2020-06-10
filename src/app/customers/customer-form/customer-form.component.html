@@ -25,13 +25,13 @@
     <div class="form-group">
       <label for="startDatePicker">Start and end dates</label>
       <input
+        bsDaterangepicker  
         type="text"
         id="startDatePicker"
         formControlName="dateRange"
         placeholder="Please select start date"
         class="form-control"
         [ngClass]="{ 'is-invalid': submitted && f.dateRange.errors }"
-        bsDaterangepicker
         [bsConfig]="bsDatepickerConfig"
         [minDate]="minDate"
         [maxDate]="maxDate"
